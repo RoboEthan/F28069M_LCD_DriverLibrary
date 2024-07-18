@@ -35,13 +35,7 @@ To run the project for development:
 
 To run the project for development:
 
-1. From Code Composer Studio, click Build (hammer icon).
-2. Attach a XDS510USB debugger to the development board.
-3. Click Debug (bug icon).
-4. After the target has been flashed, click the start button (play icon).
-5. This screen should show up in the serial terminal, follow directions to change wave.
-![image](https://github.com/user-attachments/assets/20328408-a91d-4a27-ae49-3265f13b7e54)
-
+make sure to include fine in main: #include "f28069M_LCD.h"
 
 ### Running the Tests
 
@@ -59,7 +53,11 @@ In summary:
 4. Address Review Comments.
 5. Merge your Pull Request.
 6. Delete your branch.
-   
+
+###Functions
+
+//TODO:
+
 ## Acknowledgements
 
 This project has been developed by Ethan Robotham.
