@@ -16,6 +16,7 @@ void main(void)
     Display_LCD(1, "THIS WORKS");
     DELAY_US(999999);
     Display_LCD(2, "huh");
+    Display_LCD(1, "Overwrite");
     while (1)
     {
 

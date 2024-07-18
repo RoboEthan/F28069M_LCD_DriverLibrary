@@ -25,7 +25,6 @@ void Initialize(void)
     DELAY_US(15000); //delay 15ms
 
     //Set Enable pin High
-    GpioDataRegs.GPASET.bit.GPIO23 = 1;
 
     WriteCommand(0x30);         //8 bit interface
     DELAY_US(4300);             //delay 4.3 ms
@@ -34,19 +33,19 @@ void Initialize(void)
     DELAY_US(200);                  //delay 200us
 
     WriteCommand(0x30);         //8 bit interface
-    LCDDelay1600();
+    DELAY_US(200);                  //delay 200us
 
     WriteCommand(0x38);         //FUNCTION SET: 8 bit interface, 2 lines, 5x8 font
-    //WriteCommand(0x3C);         //FUNCTION SET: 8 bit interface, 2 lines, 5x11 font
-
+    DELAY_US(37);                  //delay 37us
 
     WriteCommand(0x08);         //Display off, cursor off, blink off
-    WriteCommand(0x01);         //Display clear
-    LCDDelay1600();             // delay for clearing display
+    DELAY_US(37);                  //delay 37us
 
-    WriteCommand(0x06);         // Entry mode set: increment cursor, no shift
+    WriteCommand(0x01);         //Display clear
+    DELAY_US(1520);             // 1.52ms
 
     WriteCommand(0x0C);         // Display on, cursor off, blink off
+    DELAY_US(37);                  //delay 37us
 
 }
 
@@ -105,7 +104,7 @@ void SendByte(unsigned char Value)
 //Set E pin to select LCD
     GpioDataRegs.GPASET.bit.GPIO23 = 1;
 
-    DELAY_US(60);  //enable pulse width time to read
+    DELAY_US(1200);  //enable pulse width time to read
 
 //Clear E pin to deselect LCD
     GpioDataRegs.GPACLEAR.bit.GPIO23 = 1;
@@ -127,12 +126,9 @@ void Display_LCD(unsigned char LineNumber, char *String)
 
     // Choose the starting address based on the line number
     if (LineNumber == 1)
-        Address = 0x00; // 1st line address
+        WriteCommand(0x80); // Change address to 1st line
     else
-        Address = 0xC0; // 2nd line address
-
-    // Write the starting address to the LCD
-    WriteCommand(Address);  //MAYBEEEEE
+        WriteCommand(0xC0); // Change address to 2nd line
 
     //Displays character to display
     while (*String)
