@@ -3,6 +3,7 @@
 ## About
 
 This repository contains a library that allows the tms320F28069M to use a 1602 V1.2 LCD screen. This screen came from an arduino kit, and the library was created by looking through the data sheet
+Datasheet: https://www.openhacks.com/uploadsproductos/eone-1602a1.pdf
 
 ### Built With
 
